@@ -1,3 +1,3 @@
 # profit
 
-TODO
+Never miss a trade opportunity again.
