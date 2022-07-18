@@ -1,0 +1,9 @@
+{
+  "name": "profit",
+  "version": "0.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@mathieuc/tradingview": "~3.3.1",
+    "node-notifier": "~10.0.1"
+  }
+}
