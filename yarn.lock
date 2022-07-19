@@ -2,13 +2,18 @@
 # yarn lockfile v1
 
 
-"@mathieuc/tradingview@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@mathieuc/tradingview/-/tradingview-3.3.1.tgz#d81494cabe3ec01dff832c38df256d3b2ae0ca29"
-  integrity sha512-D2aqARgaftr2uXFnH+05HyVLXHrrnfT7QYd55XZCZXowGRffKWh6MdCu2UCdgFf9lrsslbCT3dQfW7wykjBp9A==
+"@mathieuc/tradingview@~3.3.1":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@mathieuc/tradingview/-/tradingview-3.3.3.tgz#53346d10494ccd17cfbbcb927379bf273020e0c3"
+  integrity sha512-eAEh7j9MwNxrt2jtFiQQ1owWdsbyDNdJub1fBLZ7iBOMTDVOD8uzpmVutAox7BIBeWf/Gl/1OpNSUYLz9EId8A==
   dependencies:
     jszip "^3.7.1"
     ws "^7.4.3"
+
+commander@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.0.tgz#bc4a40918fefe52e22450c111ecd6b7acce6f11c"
+  integrity sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -76,7 +81,7 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-node-notifier@^10.0.1:
+node-notifier@~10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-10.0.1.tgz#0e82014a15a8456c4cfcdb25858750399ae5f1c7"
   integrity sha512-YX7TSyDukOZ0g+gmzjB6abKu+hTGvO8+8+gIFDsRCU2t8fLV/P2unmt+LGFaIa4y64aX98Qksa97rgz4vMNeLQ==
