@@ -11,9 +11,6 @@
 
 ```sh
 #
-profit init
-
-#
 profit lucky
 
 #

@@ -7,11 +7,6 @@ program
   .version('0.0.0');
 
 program
-  .command('init')
-  .description('Initialize the profit configuration')
-  .action(() => console.log('TODO'))
-
-program
   .command('lucky')
   .description('Find the opportunity of the day')
   .action(() => console.log('TODO'))
