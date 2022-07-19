@@ -1,5 +1,8 @@
 const { Command } = require('commander');
 const program = new Command();
+const config = require('../lib/config');
+
+config.load();
 
 program
   .name('profit')
