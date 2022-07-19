@@ -18,7 +18,7 @@ profit lucky
 
 #
 profit watch rsi list
-profit watch rsi add binance:btcusdtperp 15m
+profit watch rsi add binance:btcusdtperp -t 15m
 profit watch rsi remove binance:btcusdtperp
 profit watch rsi prune
 ```
