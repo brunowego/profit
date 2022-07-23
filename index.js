@@ -6,14 +6,14 @@ const path = require('path')
 const YAML = require('yaml')
 const chalk = require('chalk')
 const humanizeDuration = require('humanize-duration');
-const { notify } = require('node-notifier')
 
 process.title = 'profit';
 
 const rcPath = path.resolve(os.homedir(), '.profitrc.yaml')
 const yaml = fs.readFileSync(rcPath, 'utf8')
 const config = YAML.parse(yaml)
-const frequency = config.notify.frequency * 1000
+const notify = config.notify
+const frequency = notify.frequency * 1000
 const rsi = config.watch.rsi
 const log = console.log;
 
