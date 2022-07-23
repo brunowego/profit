@@ -6,13 +6,20 @@ const path = require('path')
 const YAML = require('yaml')
 const chalk = require('chalk')
 const humanizeDuration = require('humanize-duration');
+const { notify } = require('node-notifier')
+
+process.title = 'profit';
 
 const rcPath = path.resolve(os.homedir(), '.profitrc.yaml')
+const yaml = fs.readFileSync(rcPath, 'utf8')
+const config = YAML.parse(yaml)
+const frequency = config.notify.frequency * 1000
+const rsi = config.watch.rsi
+const log = console.log;
 
-yaml = fs.readFileSync(rcPath, 'utf8')
-config = YAML.parse(yaml)
-frequency = config.alert.frequency * 1000
-rsi = config.watch.rsi
+const nDate = new Date().toLocaleString(config.locale, {
+  timeZone: config.timezone
+});
 
 const checkRSI = async (m) => {
   const client = new TradingView.Client()
@@ -24,35 +31,39 @@ const checkRSI = async (m) => {
   })
 
   const rsiIndicator = await TradingView.getIndicator('STD;RSI')
-
   const chartStudy = new chart.Study(rsiIndicator)
 
   chartStudy.onUpdate(() => {
-    const latestPeriod = chartStudy.periods[0]
-    // console.log(`RSI: ${latestPeriod['$time']} ${latestPeriod['RSI']}`)
+    const crsi = chartStudy.periods[0]['RSI'].toFixed(0)
 
-    if (latestPeriod['RSI'] < rsi.oversold) {
-      notifier.notify({
-        title: 'Profit Alert',
-        message: `${m.source}:${m.symbol} in Oversold`,
-        sound: true
-      })
-    }
+    log(chalk.magentaBright('%s — RSI of %s:%s is %s'), nDate, m.source, m.symbol, crsi)
 
-    if (latestPeriod['RSI'] > rsi.overbought) {
-      notifier.notify({
-        title: 'Profit Alert',
-        message: `${m.source}:${m.symbol} in Overbought`,
-        sound: true
-      })
+    let oversold = crsi < rsi.oversold
+    let overbought = crsi > rsi.overbought
+
+    if (oversold || overbought) {
+      let status = oversold ? 'oversold' : 'overbought'
+
+      if (notify.enabled) {
+        notifier.notify({
+          title: 'Profit Alert',
+          message: `${m.source}:${m.symbol} in ${status}. Timeframe ${m.timeframe.toString()}.`,
+          sound: notify.sound
+        })
+      }
+
+      log(
+        chalk.green('%s — %s:%s in %s. Timeframe %s.'),
+        nDate, m.source, m.symbol, status, m.timeframe.toString()
+      );
     }
 
     client.end()
   })
 };
 
-console.log(chalk.green('Checking RSI every %s.'), humanizeDuration(frequency));
-console.log(chalk.green('Verification cycle started!'))
+log(chalk.green('Checking RSI every %s.'), humanizeDuration(frequency));
+log(chalk.green('Verification cycle started at %s!'), nDate)
 
 const eachMarket = () => {
   rsi.markets.forEach((m, index) => {
@@ -71,4 +82,4 @@ eachMarket()
   }, frequency);
 }());
 
-console.log('Running...')
+log('Running...')
