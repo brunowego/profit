@@ -5,6 +5,9 @@
 ```sh
 #
 node ./index.js
+
+# Debug mode
+DEBUG=true node ./index.js
 ```
 
 ## Kill Process

@@ -9,6 +9,7 @@ const humanizeDuration = require('humanize-duration');
 
 process.title = 'profit';
 
+const { DEBUG } = process.env;
 const rcPath = path.resolve(os.homedir(), '.profitrc.yaml')
 const yaml = fs.readFileSync(rcPath, 'utf8')
 const config = YAML.parse(yaml)
@@ -36,7 +37,7 @@ const checkRSI = async (m) => {
   chartStudy.onUpdate(() => {
     const crsi = chartStudy.periods[0]['RSI'].toFixed(0)
 
-    log(chalk.magentaBright('%s — RSI of %s:%s is %s'), nDate, m.source, m.symbol, crsi)
+    if (DEBUG) log(chalk.magentaBright('%s — RSI of %s:%s is %s'), nDate, m.source, m.symbol, crsi)
 
     let oversold = crsi < rsi.oversold
     let overbought = crsi > rsi.overbought
