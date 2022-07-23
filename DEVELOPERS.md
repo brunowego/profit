@@ -1,5 +1,18 @@
 # Developers
 
+## Installation
+
+```sh
+#
+git clone https://github.com/brunowego/profit.git
+
+# Using NPM
+npm install
+
+# Using yarn
+yarn install
+```
+
 ## Running
 
 ```sh
