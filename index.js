@@ -70,7 +70,7 @@ const eachMarket = () => {
   rsi.markets.forEach((m, index) => {
     setTimeout(() => {
       checkRSI(m)
-    }, 1000 * (index + 1))
+    }, 3000 * (index + 1))
   })
 }
 
